@@ -34,6 +34,5 @@ btnSaveNote.addEventListener("click", (evt) =>{
     }
 })
 
-
  
 
