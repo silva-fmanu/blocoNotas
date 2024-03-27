@@ -135,6 +135,22 @@ const showNote = (note) =>{
         document.querySelector('#input-content').value = note.content;
         listNotes();
     });
+
+    excluirNote.addEventListener("click", (evt) => {
+        evt.preventDefault();
+        notes=getItem.localStorage('notes');
+        notes.forEach((item, i) => {
+            note.id=parseInt(note.id);
+            if(item.id == note.id){
+                console.log("#note");
+                notes[i] = note.id;
+
+            }
+        })
+
+    });
+
+    
 }
     listNotes(); 
 
