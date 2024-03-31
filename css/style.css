@@ -4,14 +4,14 @@
 }
 
 header{
-  border-bottom: 1px solid #1b85dc;
+  border-bottom: 1px solid #BF6586;
   height: 10vh;
   display:flex;
 }
 
 #logo{
-  width: 30vw;
-  height: 10vh;
+  font-size: 6vh; 
+  margin-left: 2%;
 }
 
 #logo img{
@@ -66,3 +66,6 @@ main{
   gap:10px;
 }
 
+.card-body{
+  background-color: #BFBFBF;
+}
