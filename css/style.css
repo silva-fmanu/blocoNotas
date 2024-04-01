@@ -42,11 +42,12 @@ main{
 }
 
 #modal-view{
-  border:1px solid #1b85dc;
+  border:1px solid #BF6586;
   position: absolute;
   display: none;
-  width: 90vw;
+  width: 96vw;
   padding:10px;
+  border-radius: 0.5rem 0.5rem;
 }
 
 #close-modal{
@@ -54,11 +55,12 @@ main{
 }
 
 #modal{
-  border:1px solid #1b85dc;
+  border:1px solid #BF6586;
   position: absolute;
   padding:2vh 2vw;
   display: none;
-  width: 90vw;
+  width: 96vw;
+  border-radius: 0.5rem 0.5rem;
 }
 
 #controls-note{
