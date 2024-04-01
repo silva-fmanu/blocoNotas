@@ -43,11 +43,13 @@ btnSaveNote.addEventListener("click", (evt) => {
         content: contentValue
     };
     saveNote(data);
-
     listNotes();
-    notes.style.display = 'flex';
+    document.querySelector("#input-id").value= "";
     modal.style.display = 'none';
     addNote.style.display = 'block';
+    notes.style.display="flex";
+    
+
 });
     
 
