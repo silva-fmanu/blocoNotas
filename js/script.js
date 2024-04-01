@@ -12,7 +12,7 @@ const pcontent = document.querySelector('#input-content');
 
 addNote.addEventListener("click", (evt) => {
     evt.preventDefault();
-   // console.log("Botão abrindo!");
+    // console.log("Botão abrindo!");
     notes.style.display='none';
     modal.style.display='block';
     addNote.style.display='none';
@@ -22,7 +22,7 @@ addNote.addEventListener("click", (evt) => {
 
 btnCloseNote.addEventListener("click", (evt) => {
     evt.preventDefault();
-   // console.log("Botão fechando!");
+    // console.log("Botão fechando!");
     notes.style.display="flex";
     modal.style.display="none";
     addNote.style.display='block';
@@ -32,12 +32,10 @@ btnCloseNote.addEventListener("click", (evt) => {
 
 btnSaveNote.addEventListener("click", (evt) => {
     evt.preventDefault();
-
-    let titleValue = document.querySelector("#input-title").value;
-    let contentValue = document.querySelector("#input-content").value;
-
-    if (document.querySelector("#input-content").value === "" &&  document.querySelector("#input-title").value === "") {
-        return;
+    const titleValue = document.querySelector("#input-title").value;
+    const contentValue = document.querySelector("#input-content").value;
+    if (titleValue === "" && contentValue === "") {
+        return; 
     }
     const data = {
         id: document.querySelector("#input-id").value,
@@ -45,28 +43,25 @@ btnSaveNote.addEventListener("click", (evt) => {
         content: contentValue
     };
     saveNote(data);
-    notes.style.display="flex";
-    modal.style.display="none";
-    addNote.style.display='block';
+
     listNotes();
- 
-    
+    notes.style.display = 'flex';
+    modal.style.display = 'none';
+    addNote.style.display = 'block';
 });
-
-
+    
 
 const saveNote = (note) => {
     let notes = loadNotes();
     note.lastTime = new Date().getTime();
-    // console.log(note.lastTime);
-    if(note.id.length > 0){
+    if (note.id.length > 0) {
         notes.forEach((item, i) => {
-            note.id=parseInt(note.id);
-            if(item.id == note.id){
+            note.id = parseInt(note.id);
+            if (item.id == note.id) {
                 notes[i] = note;
             }
         })
-    }else{
+    } else {
         note.id = new Date().getTime();
         document.querySelector('#input-id').value = note.id;
         notes.push(note);
@@ -90,14 +85,14 @@ const deleteNote = (note) => {
 
 const loadNotes = () => {
     let notes = localStorage.getItem('notes');
-    if(!notes){
-        notes = [];
-    }else{
+    if (!notes) {
+            notes = [];
+    } else {
         notes = JSON.parse(notes);
-
     }
     return notes;
-};
+}
+    
 
 const listNotes = () => {
     let listNotes = localStorage.getItem('notes');
@@ -119,7 +114,6 @@ const listNotes = () => {
         console.log(item);
         const pLastTime = document.createElement('p');
         let lastTime = new Date(item.lastTime).toLocaleDateString('pt-BR');
-        
         pLastTime.innerText = `Last time: ${lastTime}`;
 
 
@@ -139,10 +133,12 @@ const listNotes = () => {
             notes.style.display = 'flex';
             modalView.style.display = 'none';
             addNote.style.display = 'block';
+                
             if (document.querySelector("#confirmar-delete").style.display === "block") {
                 document.querySelector("#confirmar-delete").style.display = "none";
                 document.querySelector("#controls-note").style.display = "block";
             }
+    
         });
     });
 };
@@ -154,7 +150,7 @@ const showNote = (note) => {
 
     document.querySelector('#title-note').innerHTML = "<h1>"+note.title+"</h1>";
     document.querySelector('#content-note').innerHTML = "<p>"+note.content+"</p>";
-    document.querySelector('#content-note').innerHTML += "<p>Ultima atualização: "+new Date(note.lastTime).toLocaleString('pt-BR')+"</p>";
+    document.querySelector('#content-note').innerHTML += "<p>Ultima atualização: "+new Date(note.lastTime).toLocaleDateString('pt-BR')+"</p>";
     editarNota.addEventListener("click", (evt) => {
         evt.preventDefault();
         document.querySelector('#input-title').value = note.title;
@@ -164,30 +160,27 @@ const showNote = (note) => {
         modalView.style.display='none';
         document.querySelector('#input-id').value = note.id;
     })
-    
+        
+
     document.querySelector("#controls-note").style.display = "block";
     excluirNota.addEventListener("click", (evt) => {
         evt.preventDefault();
         document.querySelector("#controls-note").style.display = "none";
         document.querySelector("#confirmar-delete").style.display = "block";
-    
-        document.querySelector("#deletar").addEventListener("click", () => {
-            deleteNote(note);
-            document.querySelector("#confirmar-delete").style.display = "none";
-            notes.style.display = 'flex';
-            modalView.style.display = 'none';
-            addNote.style.display = 'block';
-        });
-    
-        document.querySelector("#nao-deletar").addEventListener("click", () => {
-            document.querySelector("#controls-note").style.display = "block";
-            document.querySelector("#confirmar-delete").style.display = "none";
-        });
+   
+    document.querySelector("#deletar").addEventListener("click", () => {
+        deleteNote(note);
+        document.querySelector("#confirmar-delete").style.display = "none";
+        notes.style.display = 'flex';
+        modalView.style.display = 'none';
+        addNote.style.display = 'block';
     });
-    
-
-    
+   
+    document.querySelector("#nao-deletar").addEventListener("click", () => {
+        document.querySelector("#controls-note").style.display = "block";
+        document.querySelector("#confirmar-delete").style.display = "none";
+    });
+});
+   
 }
 listNotes();
-
-
