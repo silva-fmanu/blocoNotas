@@ -43,6 +43,7 @@ btnSaveNote.addEventListener("click", (evt) => {
         content: contentValue
     };
     saveNote(data);
+
     listNotes();
     document.querySelector("#input-id").value= "";
     modal.style.display = 'none';
@@ -152,7 +153,7 @@ const showNote = (note) => {
 
     document.querySelector('#title-note').innerHTML = "<h1>"+note.title+"</h1>";
     document.querySelector('#content-note').innerHTML = "<p>"+note.content+"</p>";
-    document.querySelector('#content-note').innerHTML += "<p>Ultima atualização: "+new Date(note.lastTime).toLocaleDateString('pt-BR')+"</p>";
+    document.querySelector('#content-note').innerHTML += "<p>Ultima atualização: "+new Date(note.lastTime).toLocaleString('pt-BR')+"</p>";
     editarNota.addEventListener("click", (evt) => {
         evt.preventDefault();
         document.querySelector('#input-title').value = note.title;
