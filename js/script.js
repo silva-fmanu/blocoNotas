@@ -117,7 +117,7 @@ const listNotes = () => {
         console.log(item);
         const pLastTime = document.createElement('p');
         let lastTime = new Date(item.lastTime).toLocaleDateString('pt-BR');
-        pLastTime.innerText = `Last time: ${lastTime}`;
+        pLastTime.innerText = `${lastTime}`;
 
 
         divCardBody.appendChild(h1);
